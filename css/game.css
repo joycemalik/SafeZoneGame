@@ -1,0 +1,58 @@
+/* Add or modify in game.css */
+
+/* Ensure tiles are square and larger */
+.tile {
+    width: 80px;   /* fixed width for a bigger box */
+    height: 80px;  /* fixed height for a bigger box */
+    border: 2px solid #0ff;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    color: #0ff;
+    background: #000; /* Dark background for contrast */
+}
+
+/* When hovered, give some glow and slight scale */
+.tile:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 10px #0ff;
+}
+
+/* Revealed safe tile: bright and clearly visible */
+.tile.revealed.safe {
+    background: #0f0;
+    color: #000;
+    border: 2px solid #0f0;
+    transition: background 0.3s, transform 0.2s;
+}
+
+/* Revealed dead tile: clearly visible as red */
+.tile.revealed.dead {
+    background: #f00;
+    color: #fff;
+    border: 2px solid #f00;
+    transition: background 0.3s, transform 0.2s;
+}
+
+/* Hint animation: a pulse highlight to show which tile is hinted */
+.tile.hint {
+    animation: hintGlow 1s ease-in-out;
+}
+
+@keyframes hintGlow {
+    0% {
+        box-shadow: 0 0 0px #ff0;
+        background: #000;
+    }
+    50% {
+        box-shadow: 0 0 20px #ff0;
+        background: rgba(255, 255, 0, 0.2);
+    }
+    100% {
+        box-shadow: 0 0 0px #ff0;
+        background: #000;
+    }
+}

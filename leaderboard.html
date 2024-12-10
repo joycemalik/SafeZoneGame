@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Safe Zone - Leaderboard</title>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/leaderboard.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="leaderboard-container">
+    <h1>Leaderboard</h1>
+    <div class="name-entry">
+        <input type="text" id="playerNameInput" class="futuristic-input" placeholder="Your Name"/>
+        <button id="saveNameBtn" class="futuristic-btn small">Save Name</button>
+    </div>
+    <table id="leaderboardTable">
+        <thead>
+            <tr><th>Rank</th><th>Name</th><th>Score</th></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div class="actions">
+        <button id="refreshBtn" class="futuristic-btn small">Refresh</button>
+        <button id="backBtn" class="futuristic-btn small">Back to Main</button>
+    </div>
+</div>
+<script src="js/main.js"></script>
+<script src="js/leaderboard.js"></script>
+</body>
+</html>

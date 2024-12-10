@@ -1,0 +1,25 @@
+body {
+    margin:0; 
+    padding:20px;
+    background: linear-gradient(135deg, #111, #333);
+    color:#0ff;
+    font-family:'Orbitron',sans-serif;
+}
+.mode-container {
+    max-width:400px;
+    margin:50px auto;
+    text-align:center;
+    padding:20px;
+    border:2px solid #0ff;
+    border-radius:10px;
+    background:rgba(0,0,0,0.7);
+}
+.modes {
+    margin-bottom:20px;
+}
+.modes button {
+    margin:10px;
+}
+.options {
+    margin:20px 0;
+}

@@ -4,22 +4,56 @@ body {
     background: linear-gradient(135deg, #111, #333);
     color:#0ff;
     font-family:'Orbitron',sans-serif;
+    overflow:hidden;
 }
+
 .mode-container {
     max-width:400px;
     margin:50px auto;
     text-align:center;
-    padding:20px;
+    padding:30px;
     border:2px solid #0ff;
-    border-radius:10px;
-    background:rgba(0,0,0,0.7);
+    border-radius:15px;
+    background:rgba(0,0,0,0.5);
+    backdrop-filter:blur(10px);
+    animation: fadeIn 1s ease-out;
 }
+
 .modes {
     margin-bottom:20px;
 }
-.modes button {
+
+.modeBtn {
     margin:10px;
 }
-.options {
-    margin:20px 0;
+
+.modeBtn.active {
+    background:#0ff;
+    color:#000;
+}
+
+.futuristic-select {
+    background:transparent;
+    border:2px solid #0ff;
+    color:#0ff;
+    padding:10px;
+    margin:10px;
+    text-transform:uppercase;
+    font-family:'Orbitron', sans-serif;
+    cursor:pointer;
+    outline:none;
+}
+
+.futuristic-select:hover {
+    box-shadow:0 0 15px #0ff;
+}
+
+.action-buttons button {
+    margin:15px;
+    padding:15px 30px;
+}
+
+@keyframes fadeIn {
+    0% {opacity:0; transform:scale(0.8);}
+    100% {opacity:1; transform:scale(1);}
 }

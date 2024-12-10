@@ -40,32 +40,65 @@ class GameController {
         }
 
         if (this.mode === 'random') {
-            // Random
             let allTiles = Array.from({length: totalTiles}, (_, i) => i);
             this.shuffleArray(allTiles);
             this.safeTiles = allTiles.slice(0, safeCount);
             this.deadTiles = allTiles.slice(safeCount);
         } else {
-            // Logical pattern:
-            // Example pattern: Safe tiles on a checkerboard pattern
-            this.safeTiles = [];
-            this.deadTiles = [];
-            for (let i=0; i<totalTiles; i++){
-                const row = Math.floor(i / this.gridSize);
-                const col = i % this.gridSize;
-                // Checkerboard pattern: safe if (row+col) % 2 == 0
-                if ((row + col) % 2 === 0) {
-                    this.safeTiles.push(i);
-                } else {
-                    this.deadTiles.push(i);
-                }
-            }
-
-            // Adjust counts if needed
-            while (this.safeTiles.length > safeCount) {
-                this.deadTiles.push(this.safeTiles.pop());
-            }
+            // Logical patterns
+            const patterns = [this.patternCheckerboard, this.patternDiagonal, this.patternPrimes, this.patternFibonacci];
+            const patternFunc = patterns[Math.floor(Math.random()*patterns.length)].bind(this);
+            const candidates = patternFunc(totalTiles);
+            const chosenSafe = candidates.slice(0,safeCount);
+            const chosenDead = Array.from({length:totalTiles}, (_,i)=>i).filter(x=>!chosenSafe.includes(x));
+            this.safeTiles = chosenSafe;
+            this.deadTiles = chosenDead;
         }
+    }
+
+    patternCheckerboard(totalTiles) {
+        const arr = [];
+        for (let i=0; i<totalTiles; i++) {
+            const row = Math.floor(i / this.gridSize);
+            const col = i % this.gridSize;
+            if ((row+col)%2===0) arr.push(i);
+        }
+        return arr;
+    }
+
+    patternDiagonal(totalTiles) {
+        const arr = [];
+        for (let i=0; i<totalTiles; i++){
+            const row = Math.floor(i / this.gridSize);
+            const col = i % this.gridSize;
+            if (row === col) arr.push(i);
+        }
+        return arr;
+    }
+
+    patternPrimes(totalTiles) {
+        const arr = [];
+        for (let i=2;i<totalTiles;i++){
+            if (this.isPrime(i)) arr.push(i);
+        }
+        return arr;
+    }
+
+    isPrime(num) {
+        for (let i=2;i<=Math.sqrt(num);i++){
+            if (num%i===0)return false;
+        }
+        return true;
+    }
+
+    patternFibonacci(totalTiles) {
+        const arr = [];
+        let a=0,b=1;
+        while (b<totalTiles) {
+            arr.push(b);
+            [a,b] = [b,a+b];
+        }
+        return arr;
     }
 
     renderTiles() {
@@ -79,19 +112,18 @@ class GameController {
 
     handleTileClick(e, idx) {
         const tile = e.target;
-                // In handleTileClick method, replace the part where we reveal tiles with UI methods:
+        if (tile.classList.contains('revealed')) return;
+        this.audioCtrl.playClick();
+
         if (this.deadTiles.includes(idx)) {
             // Lose condition
             this.revealAll();
             this.audioCtrl.playLose();
             setTimeout(() => {
-                this.uiCtrl.showMessage('You hit a dead tile! Game Over.');
+                this.uiCtrl.showEndModal('You Lost!', 'Try Again', 'Main Menu');
                 this.updateLeaderboard();
-                window.location.href='leaderboard.html';
             }, 500);
         } else if (this.safeTiles.includes(idx)) {
-            const tile = e.target;
-            // Use uiCtrl method to reveal visually
             this.uiCtrl.revealTileSafe(tile);
             this.revealedCount++;
             this.score += 10;
@@ -102,13 +134,11 @@ class GameController {
                 // Win condition
                 this.audioCtrl.playWin();
                 setTimeout(() => {
-                    this.uiCtrl.showMessage('You cleared all safe tiles! You Win!');
+                    this.uiCtrl.showEndModal('You Win!', 'Play Again', 'Main Menu');
                     this.updateLeaderboard();
-                    window.location.href='leaderboard.html';
                 }, 500);
             }
         }
-
     }
 
     revealAll() {
@@ -122,26 +152,34 @@ class GameController {
             }
         });
     }
-    // In useHint method, ensure we call the uiCtrl to hint the tile:
-useHint() {
-    if (this.hintsUsed >= this.hintLimit) return;
-    this.hintsUsed++;
-    document.getElementById('hintBtn').textContent = `Hint (${this.hintLimit - this.hintsUsed})`;
 
-    this.audioCtrl.playHint();
+    useHint() {
+        if (this.hintsUsed >= this.hintLimit) return;
+        this.hintsUsed++;
+        document.getElementById('hintBtn').textContent = `Hint (${this.hintLimit - this.hintsUsed})`;
 
-    const hiddenSafe = this.safeTiles.filter(i => {
-        const t = document.querySelector(`.tile[data-index="${i}"]`);
-        return !t.classList.contains('revealed');
-    });
+        this.audioCtrl.playHint();
 
-    if (hiddenSafe.length > 0) {
-        const pick = hiddenSafe[Math.floor(Math.random() * hiddenSafe.length)];
-        const hintTile = document.querySelector(`.tile[data-index="${pick}"]`);
-        this.uiCtrl.hintTile(hintTile);  // This will animate the hint
+        const hiddenSafe = this.safeTiles.filter(i => {
+            const t = document.querySelector(`.tile[data-index="${i}"]`);
+            return !t.classList.contains('revealed');
+        });
+
+        if (hiddenSafe.length > 0) {
+            const pick = hiddenSafe[Math.floor(Math.random()*hiddenSafe.length)];
+            const hintTile = document.querySelector(`.tile[data-index="${pick}"]`);
+            this.uiCtrl.hintTile(hintTile);
+
+            const hintMessages = [
+                "The pattern whispers of symmetrical lines...",
+                "Numbers of prime origin guide your steps...",
+                "A spiral of fate unfolds before your eyes...",
+                "Checkerboard harmony is your key..."
+            ];
+            const randomHint = hintMessages[Math.floor(Math.random()*hintMessages.length)];
+            this.uiCtrl.showHintModal(randomHint);
+        }
     }
-}
-
 
     startTimer() {
         this.uiCtrl.setTime(this.timeLeft);
@@ -151,9 +189,8 @@ useHint() {
             if (this.timeLeft <= 0) {
                 clearInterval(this.timerInterval);
                 this.revealAll();
-                this.uiCtrl.showMessage('Time Up! Game Over.');
+                this.uiCtrl.showEndModal('Time Up!', 'Try Again', 'Main Menu');
                 this.updateLeaderboard();
-                window.location.href='leaderboard.html';
             }
         }, 1000);
     }

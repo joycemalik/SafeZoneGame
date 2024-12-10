@@ -9,21 +9,18 @@ class UIController {
 
     applyTheme(theme) {
         const body = document.body;
-        switch(theme) {
-            case 'neon':
-                body.style.background = 'linear-gradient(45deg, #000, #0ff)';
-                break;
-            case 'dark':
-                body.style.background = '#000';
-                break;
-            default:
-                body.style.background = 'linear-gradient(135deg, #111, #333)';
+        if (theme === 'neon') {
+            body.style.background = 'linear-gradient(45deg, #000, #0ff)';
+        } else if (theme === 'dark') {
+            body.style.background = '#000';
+        } else {
+            body.style.background = 'linear-gradient(135deg, #111, #333)';
         }
     }
 
     createGrid(gridSize) {
-        this.gameGrid.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
-        this.gameGrid.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
+        this.gameGrid.style.gridTemplateRows = `repeat(${gridSize}, 80px)`;
+        this.gameGrid.style.gridTemplateColumns = `repeat(${gridSize}, 80px)`;
     }
 
     createTile(idx) {
@@ -54,7 +51,46 @@ class UIController {
         setTimeout(() => tile.classList.remove('hint'), 1000);
     }
 
-    showMessage(message) {
-        alert(message);
+    showHintModal(message) {
+        const modal = document.getElementById('hintModal');
+        const modalText = modal.querySelector('.hint-text');
+        modalText.textContent = message;
+        modal.style.display = 'flex';
+        anime({
+            targets: '#hintModal',
+            opacity:[0,1],
+            duration:500,
+            easing:'easeOutQuad'
+        });
+        setTimeout(() => {
+            anime({
+                targets:'#hintModal',
+                opacity:[1,0],
+                duration:500,
+                easing:'easeInQuad',
+                complete:()=>{ modal.style.display='none'; }
+            });
+        },3000);
+    }
+
+    showEndModal(title, primaryBtnText, secondaryBtnText) {
+        const endModal = document.getElementById('endModal');
+        endModal.querySelector('.end-title').textContent = title;
+        const primaryBtn = endModal.querySelector('.primary-action');
+        const secondaryBtn = endModal.querySelector('.secondary-action');
+
+        primaryBtn.textContent = primaryBtnText;
+        secondaryBtn.textContent = secondaryBtnText;
+
+        endModal.style.display='flex';
+        anime({
+            targets:'#endModal',
+            opacity:[0,1],
+            duration:600,
+            easing:'easeOutExpo'
+        });
+
+        primaryBtn.onclick=()=>{ window.location.reload(); };
+        secondaryBtn.onclick=()=>{ window.location.href='index.html'; };
     }
 }

@@ -3,21 +3,34 @@ body {
     font-family:'Orbitron', sans-serif;
     background:linear-gradient(135deg, #111, #333);
     color:#0ff;
+    overflow:hidden;
 }
 .leaderboard-container {
     max-width:600px;
     margin:0 auto;
     text-align:center;
     background:rgba(0,0,0,0.5);
+    backdrop-filter:blur(10px);
     padding:20px;
     border:2px solid #0ff;
     border-radius:10px;
+    animation: fadeIn 1s ease-out;
+}
+@keyframes fadeIn {
+    0% {opacity:0; transform:scale(0.8);}
+    100% {opacity:1; transform:scale(1);}
 }
 .name-entry {
     margin-bottom:20px;
 }
-.name-entry .futuristic-input {
+.futuristic-input {
+    background:transparent;
+    border:2px solid #0ff;
+    color:#0ff;
+    padding:5px 10px;
     margin-right:10px;
+    font-family:'Orbitron',sans-serif;
+    text-transform:uppercase;
 }
 table {
     width:100%;

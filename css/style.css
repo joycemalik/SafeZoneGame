@@ -2,9 +2,7 @@ body {
     margin:0; padding:0;
     font-family:'Orbitron', sans-serif;
     color:#0ff;
-    cursor: url('images\cursor-gun.png') 32 32, auto; /* A futuristic crosshair/gun cursor */
 }
-
 .futuristic-btn {
     background:transparent;
     border:2px solid #0ff;
@@ -16,35 +14,15 @@ body {
     font-size:1em;
     text-transform:uppercase;
     letter-spacing:0.05em;
+    position:relative;
 }
-
 .futuristic-btn:hover {
     background:#0ff;
     color:#000;
     box-shadow:0 0 10px #0ff;
+    transform:scale(1.05);
 }
-
 .futuristic-btn.small {
     padding:5px 10px;
     font-size:0.9em;
 }
-
-.futuristic-select, .futuristic-input {
-    background:transparent;
-    border:2px solid #0ff;
-    color:#0ff;
-    font-family:'Orbitron', sans-serif;
-    padding:5px;
-    margin:5px;
-    text-transform:uppercase;
-    outline:none;
-}
-
-.futuristic-select:hover, .futuristic-input:hover {
-    box-shadow:0 0 5px #0ff;
-}
-
-body {
-  cursor: url('images/cursor-gun.png') 32 32, auto; /* A futuristic crosshair/gun cursor */
-}
-

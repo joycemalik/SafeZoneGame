@@ -17,11 +17,12 @@ project/
     uiController.js
     gameController.js
     leaderboard.js
+    cursor.js
   sounds/
     click.mp3
     reveal.mp3
     lose.mp3
     win.mp3
     hint.mp3
-  fonts/
-    # If you have any custom fonts, or load via CDN.
+  images/
+    cursor-gun.png

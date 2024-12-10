@@ -7,6 +7,8 @@
 <link rel="stylesheet" href="css/style.css"/>
 <link rel="stylesheet" href="css/game.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 </head>
 <body>
 <div class="game-container">
@@ -22,16 +24,36 @@
     </div>
 </div>
 
+<!-- Hint Modal -->
+<div id="hintModal" style="display:none; position:absolute; top:40%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.8); padding:20px; border:2px solid #0ff; border-radius:10px; width:300px; text-align:center; z-index:999;">
+  <p class="hint-text" style="color:#0ff;font-size:1.2em;"></p>
+</div>
+
+<!-- End Modal -->
+<div id="endModal" style="display:none; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.7); padding:30px; border:2px solid #0ff; border-radius:15px; width:400px; text-align:center; z-index:999;">
+  <h2 class="end-title" style="color:#0ff; margin-bottom:20px;">Result</h2>
+  <button class="primary-action futuristic-btn" style="margin:10px;">Play Again</button>
+  <button class="secondary-action futuristic-btn" style="margin:10px;">Main Menu</button>
+</div>
+
+<!-- Audio -->
 <audio id="clickSound" src="sounds/click.mp3" preload="auto"></audio>
 <audio id="revealSound" src="sounds/reveal.mp3" preload="auto"></audio>
 <audio id="loseSound" src="sounds/lose.mp3" preload="auto"></audio>
 <audio id="winSound" src="sounds/win.mp3" preload="auto"></audio>
 <audio id="hintSound" src="sounds/hint.mp3" preload="auto"></audio>
 
+<div id="cursorTrail"></div>
+
 <script src="js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="js/cursor.js"></script>
 <script src="js/audioController.js"></script>
 <script src="js/uiController.js"></script>
 <script src="js/gameController.js"></script>
 <script src="js/game.js"></script>
 </body>
 </html>
+
+
+

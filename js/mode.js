@@ -1,14 +1,12 @@
-let selectedMode = 'random';
-
 document.querySelectorAll('.modeBtn').forEach(btn => {
     btn.addEventListener('click', () => {
-        selectedMode = btn.dataset.mode;
         document.querySelectorAll('.modeBtn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
     });
 });
 
 document.getElementById('startGameBtn').addEventListener('click', () => {
+    const selectedMode = document.querySelector('.modeBtn.active').dataset.mode;
     const gridSize = parseInt(document.getElementById('gridSize').value);
     const difficulty = document.getElementById('difficulty').value;
     const timerEnabled = document.getElementById('timerOption').checked;
@@ -26,3 +24,6 @@ document.getElementById('startGameBtn').addEventListener('click', () => {
 document.getElementById('backBtn').addEventListener('click', () => {
     window.location.href = 'index.html';
 });
+
+// GSAP entry animation
+// gsap.from(".mode-container", {duration:1, opacity:0, y:50, ease:"power3.out"});

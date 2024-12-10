@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const timerEnabled = (localStorage.getItem('timerEnabled') === 'true');
     const theme = localStorage.getItem('theme') || 'default';
 
-    // Initialize Controllers
     const audioCtrl = new AudioController();
     const uiCtrl = new UIController(theme);
     const gameCtrl = new GameController(gridSize, mode, difficulty, timerEnabled, audioCtrl, uiCtrl);

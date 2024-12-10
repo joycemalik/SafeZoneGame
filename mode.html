@@ -7,18 +7,24 @@
 <link rel="stylesheet" href="css/style.css"/>
 <link rel="stylesheet" href="css/mode.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Load libraries before cursor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
 </head>
 <body>
+
 <div class="mode-container">
-    <h1>Select Your Challenge</h1>
+    <h1>Configure Your Challenge</h1>
     <div class="modes">
-        <button class="modeBtn futuristic-btn" data-mode="random">Random Mode</button>
+        <button class="modeBtn futuristic-btn active" data-mode="random">Random Mode</button>
         <button class="modeBtn futuristic-btn" data-mode="logical">Logical Mode</button>
     </div>
     
     <h2>Grid Size</h2>
     <select id="gridSize" class="futuristic-select">
-        <option value="3">3x3</option>
+        <option value="3" selected>3x3</option>
         <option value="4">4x4</option>
         <option value="5">5x5</option>
         <option value="6">6x6</option>
@@ -26,16 +32,16 @@
 
     <h2>Difficulty</h2>
     <select id="difficulty" class="futuristic-select">
-        <option value="easy">Easy (More Safe Tiles)</option>
+        <option value="easy">Easy</option>
         <option value="medium" selected>Medium</option>
-        <option value="hard">Hard (Fewer Safe Tiles)</option>
+        <option value="hard">Hard</option>
     </select>
 
     <div class="options">
-        <label><input type="checkbox" id="timerOption" /> Enable Timer</label>
-        <label>Theme: 
+        <label style="display:inline-block; margin:10px;"><input type="checkbox" id="timerOption" /> Enable Timer</label>
+        <label style="display:inline-block; margin:10px;">Theme:
             <select id="themeOption" class="futuristic-select">
-                <option value="default">Default</option>
+                <option value="default" selected>Default</option>
                 <option value="neon">Neon</option>
                 <option value="dark">Dark</option>
             </select>
@@ -48,19 +54,9 @@
     </div>
 </div>
 
-<canvas id="bgCanvas"></canvas>
+<div id="cursorTrail"></div>
 
-<div class="title">
-  <h1 class="landing-logo">SAFE ZONE</h1>
-  <p class="subtitle">A Cosmic Test of Logic and Fortune</p>
-</div>
-<div class="landing-buttons">
-  <button id="startBtn" class="futuristic-btn">Enter The Grid</button>
-  <button id="leaderboardBtn" class="futuristic-btn">Hall of Fame</button>
-</div>
-
-
-<script src="js/main.js"></script>
+<script src="js/cursor.js"></script>
 <script src="js/mode.js"></script>
 </body>
 </html>

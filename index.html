@@ -7,23 +7,32 @@
 <link rel="stylesheet" href="css/style.css"/>
 <link rel="stylesheet" href="css/landing.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Load libraries before cursor.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r110/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
 </head>
 <body>
+
+<!-- Three.js background canvas -->
+<canvas id="bgCanvas"></canvas>
+
 <div class="landing-container">
-    <div class="title">
-        <h1>SAFE ZONE</h1>
-        <p class="subtitle">Select safe tiles. Avoid the dead ones. Survive and top the leaderboard.</p>
-    </div>
-    <div class="landing-buttons">
-        <button id="startBtn" class="futuristic-btn">Start</button>
-        <button id="leaderboardBtn" class="futuristic-btn">Leaderboard</button>
+    <div class="content-panel">
+        <h1 class="landing-logo">SAFE ZONE</h1>
+        <p class="subtitle">A Cosmic Test of Logic and Fortune</p>
+        <div class="landing-buttons">
+            <button id="startBtn" class="futuristic-btn">Enter The Grid</button>
+            <button id="leaderboardBtn" class="futuristic-btn">Hall of Fame</button>
+        </div>
     </div>
 </div>
-<script src="js/main.js"></script>
+
+<div id="cursorTrail"></div>
+
+<script src="js/cursor.js"></script>
 <script src="js/landing.js"></script>
 </body>
 </html>

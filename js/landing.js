@@ -68,3 +68,12 @@ lottie.loadAnimation({
   autoplay:true,
   path:'animations/scanner.json'
 });
+
+const developerTypedEl = document.getElementById('developerTyped');
+const developerTyped = new Typed(developerTypedEl, {
+    strings: ["Developed by Joyce", "Crafted with Precision", "Brought to Life by Joyce"],
+    typeSpeed: 50,
+    backSpeed: 30,
+    backDelay: 2000,
+    loop: true
+});

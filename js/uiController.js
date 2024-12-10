@@ -73,15 +73,15 @@ class UIController {
         },3000);
     }
 
-    showEndModal(title, primaryBtnText, secondaryBtnText) {
+    showEndModal(title, primaryBtnText, secondaryBtnText, lottiePath) {
         const endModal = document.getElementById('endModal');
         endModal.querySelector('.end-title').textContent = title;
         const primaryBtn = endModal.querySelector('.primary-action');
         const secondaryBtn = endModal.querySelector('.secondary-action');
-
+    
         primaryBtn.textContent = primaryBtnText;
         secondaryBtn.textContent = secondaryBtnText;
-
+    
         endModal.style.display='flex';
         anime({
             targets:'#endModal',
@@ -89,8 +89,22 @@ class UIController {
             duration:600,
             easing:'easeOutExpo'
         });
-
+    
         primaryBtn.onclick=()=>{ window.location.reload(); };
         secondaryBtn.onclick=()=>{ window.location.href='index.html'; };
+    
+        // Load Lottie animation
+        const endLottie = document.getElementById('endLottie');
+        endLottie.innerHTML=''; 
+        if (lottiePath) {
+          lottie.loadAnimation({
+            container:endLottie,
+            renderer:'svg',
+            loop:true,
+            autoplay:true,
+            path:lottiePath
+          });
+        }
     }
+    
 }

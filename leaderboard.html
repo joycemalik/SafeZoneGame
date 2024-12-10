@@ -7,10 +7,17 @@
 <link rel="stylesheet" href="css/style.css"/>
 <link rel="stylesheet" href="css/leaderboard.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.8/lottie.min.js"></script>
+
 </head>
 <body>
 <div class="leaderboard-container">
-    <h1>Leaderboard</h1>
+    <h1 id="leaderboardTitle">Hall of Fame</h1>
+    <div id="frameLottie" style="width:100%; height:100px;"></div>
     <div class="name-entry">
         <input type="text" id="playerNameInput" class="futuristic-input" placeholder="Your Name"/>
         <button id="saveNameBtn" class="futuristic-btn small">Save Name</button>
@@ -26,8 +33,9 @@
         <button id="backBtn" class="futuristic-btn small">Back to Main</button>
     </div>
 </div>
-<script src="js/main.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+<div id="cursorTrail"></div>
+
 <script src="js/cursor.js"></script>
 <script src="js/leaderboard.js"></script>
 </body>

@@ -25,5 +25,12 @@ document.getElementById('backBtn').addEventListener('click', () => {
     window.location.href = 'index.html';
 });
 
-// GSAP entry animation
 // gsap.from(".mode-container", {duration:1, opacity:0, y:50, ease:"power3.out"});
+
+// Initialize Tippy.js for tooltips
+tippy('[data-tippy-content]', {
+    theme: 'light-border',
+    animation:'scale',
+    delay:[100,0],
+    placement:'top'
+});

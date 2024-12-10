@@ -6,6 +6,8 @@
 <title>Safe Zone - Game</title>
 <link rel="stylesheet" href="css/style.css"/>
 <link rel="stylesheet" href="css/game.css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.8/lottie.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
@@ -32,9 +34,11 @@
 <!-- End Modal -->
 <div id="endModal" style="display:none; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.7); padding:30px; border:2px solid #0ff; border-radius:15px; width:400px; text-align:center; z-index:999;">
   <h2 class="end-title" style="color:#0ff; margin-bottom:20px;">Result</h2>
+  <div id="endLottie" style="width:100px; height:100px; margin:0 auto;"></div>
   <button class="primary-action futuristic-btn" style="margin:10px;">Play Again</button>
   <button class="secondary-action futuristic-btn" style="margin:10px;">Main Menu</button>
 </div>
+
 
 <!-- Audio -->
 <audio id="clickSound" src="sounds/click.mp3" preload="auto"></audio>

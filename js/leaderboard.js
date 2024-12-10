@@ -9,6 +9,24 @@ function loadLeaderboard(){
     document.getElementById('saveNameBtn').addEventListener('click', saveName);
     document.getElementById('refreshBtn').addEventListener('click', renderLeaderboard);
     document.getElementById('backBtn').addEventListener('click', () => window.location.href='index.html');
+
+    // Typed.js on "Hall of Fame"
+    new Typed('#leaderboardTitle', {
+      strings: ["Hall of Fame", "Legends of the Grid", "Eternal Glory..."],
+      typeSpeed:50,
+      backSpeed:30,
+      backDelay:2000,
+      loop:true
+    });
+
+    // Lottie animation for frame
+    lottie.loadAnimation({
+      container:document.getElementById('frameLottie'),
+      renderer:'svg',
+      loop:true,
+      autoplay:true,
+      path:'animations/frame.json'
+    });
 }
 
 function saveName(){

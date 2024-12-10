@@ -119,10 +119,10 @@ class GameController {
             // Lose condition
             this.revealAll();
             this.audioCtrl.playLose();
-            setTimeout(() => {
-                this.uiCtrl.showEndModal('You Lost!', 'Try Again', 'Main Menu');
-                this.updateLeaderboard();
-            }, 500);
+setTimeout(() => {
+    this.uiCtrl.showEndModal('You Lost!', 'Try Again', 'Main Menu', 'animations/error.json');
+    this.updateLeaderboard();
+}, 500);
         } else if (this.safeTiles.includes(idx)) {
             this.uiCtrl.revealTileSafe(tile);
             this.revealedCount++;
@@ -134,7 +134,19 @@ class GameController {
                 // Win condition
                 this.audioCtrl.playWin();
                 setTimeout(() => {
-                    this.uiCtrl.showEndModal('You Win!', 'Play Again', 'Main Menu');
+                    // Confetti on win
+                    const duration = 2 * 1000;
+                    const end = Date.now() + duration;
+                    (function frame() {
+                    confetti({
+                        particleCount: 5,
+                        startVelocity: 20,
+                        spread:360,
+                        origin:{x:Math.random(), y:Math.random()-0.2}
+                    });
+                    if (Date.now() < end) requestAnimationFrame(frame);
+                    })();
+                    this.uiCtrl.showEndModal('You Win!', 'Play Again', 'Main Menu', 'animations/frame.json');
                     this.updateLeaderboard();
                 }, 500);
             }

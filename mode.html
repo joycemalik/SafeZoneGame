@@ -8,9 +8,11 @@
 <link rel="stylesheet" href="css/mode.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
-<!-- Load libraries before cursor.js -->
+<!-- Libraries -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
 
 </head>
 <body>
@@ -18,12 +20,12 @@
 <div class="mode-container">
     <h1>Configure Your Challenge</h1>
     <div class="modes">
-        <button class="modeBtn futuristic-btn active" data-mode="random">Random Mode</button>
-        <button class="modeBtn futuristic-btn" data-mode="logical">Logical Mode</button>
+        <button class="modeBtn futuristic-btn active" data-mode="random" data-tippy-content="Randomly placed safe tiles. Pure luck!">Random Mode</button>
+        <button class="modeBtn futuristic-btn" data-mode="logical" data-tippy-content="Tiles follow a hidden pattern. Use logic and hints!">Logical Mode</button>
     </div>
     
     <h2>Grid Size</h2>
-    <select id="gridSize" class="futuristic-select">
+    <select id="gridSize" class="futuristic-select" data-tippy-content="Choose how big the grid is">
         <option value="3" selected>3x3</option>
         <option value="4">4x4</option>
         <option value="5">5x5</option>
@@ -31,15 +33,17 @@
     </select>
 
     <h2>Difficulty</h2>
-    <select id="difficulty" class="futuristic-select">
+    <select id="difficulty" class="futuristic-select" data-tippy-content="Easy=More safe tiles, Hard=Fewer safe tiles">
         <option value="easy">Easy</option>
         <option value="medium" selected>Medium</option>
         <option value="hard">Hard</option>
     </select>
 
     <div class="options">
-        <label style="display:inline-block; margin:10px;"><input type="checkbox" id="timerOption" /> Enable Timer</label>
-        <label style="display:inline-block; margin:10px;">Theme:
+        <label style="display:inline-block; margin:10px;" data-tippy-content="Set a time limit for more challenge">
+            <input type="checkbox" id="timerOption" /> Enable Timer
+        </label>
+        <label style="display:inline-block; margin:10px;" data-tippy-content="Change the visual theme of the game">Theme:
             <select id="themeOption" class="futuristic-select">
                 <option value="default" selected>Default</option>
                 <option value="neon">Neon</option>
@@ -49,8 +53,8 @@
     </div>
 
     <div class="action-buttons">
-        <button id="startGameBtn" class="futuristic-btn">Start Game</button>
-        <button id="backBtn" class="futuristic-btn">Back</button>
+        <button id="startGameBtn" class="futuristic-btn" data-tippy-content="Begin the challenge!">Start Game</button>
+        <button id="backBtn" class="futuristic-btn" data-tippy-content="Return to the main menu">Back</button>
     </div>
 </div>
 
